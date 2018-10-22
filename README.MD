@@ -12,22 +12,27 @@ Membuat akun baru
 
 ```
 Route : /api/signup
+
+Body :
 {
-  "username":"Fadhlan_Hawali",
-  "email":"fadhlan.hawali@mail.ugm.ac.id",
-  "nim":"16/400354/TK/45368",
-  "telepon":"087838595547",
-  "password":"pintar123",
-  "confirm_password":"pintar123"
+  "username":string,
+  "email":string,
+  "nim":string,
+  "telepon":int64,
+  "password":string",
+  "confirm_password":string
 }
+
+Response :
+{
+
+}
+
 ```
 
-### Installing
+### Login
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+Masuk ke akun yang sudah dibuat
 ```
 Give the example
 ```
