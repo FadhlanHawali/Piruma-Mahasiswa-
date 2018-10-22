@@ -77,6 +77,35 @@ Response :
     ]
 }
 ```
+### Detail History
+
+Untuk menampilkan detail dari history sebuah pemesanan ruangan
+
+```
+Route : /api/history?idPemesanan={id_pemesanan}
+Method : /GET
+Header (
+ Key = "Authorization"
+ Value = token
+)
+
+Response :
+{
+    "ID": string,
+    "id_mahasiswa": string,
+    "id_pemesanan": string,
+    "ruangan": string,
+    "departemen": string,
+    "penanggung_jawab": string,
+    "telepon": string,
+    "keterangan": string,
+    "timestamp_peminjaman": string,
+    "status_peminjaman": string,
+    "status_surat": string,
+    "timestamp_start": string,
+    "timestap_end": string
+}
+```
 
 
 ## Authors
