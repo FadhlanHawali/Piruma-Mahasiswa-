@@ -12,7 +12,7 @@ Membuat akun baru
 
 ```
 Route : /api/signup
-
+Method : /POST
 Body :
 {
   "username":string,
@@ -25,22 +25,57 @@ Body :
 
 Response :
 {
-
+  "status":"success"
 }
-
 ```
 
 ### Login
 
 Masuk ke akun yang sudah dibuat
 ```
-Give the example
-```
+Route : /api/login
+Method : /POST
+Body :
+{
+  "email":string,
+  "password":string
+}
 
-And repeat
+Response :
+{
+  "status":"Success",
+  "token":string
+}
+```
+Token akan dipakai diseluruh operasi setelah login.
+
+### List History
+
+Untuk menampilkan list history dari pemesanan secara kasar (tidak detail).
 
 ```
-until finished
+Route : /api/list_history
+Method : /GET
+Header (
+ Key = "Authorization"
+ Value = token
+)
+
+Response :
+{
+    "count": int,
+    "result": [
+        {
+            "id_pemesanan": string,
+            "ruangan": string,
+            "departemen": string,
+            "status_peminjaman": string,
+            "status_surat": string,
+            "timestamp_start": string,
+            "timestamp_end": string
+        }
+    ]
+}
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
