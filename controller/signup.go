@@ -45,6 +45,7 @@ func (idb *InDB) SignUp(c * gin.Context){
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(signup.Password), bcrypt.DefaultCost);if err != nil{
 		c.JSON(http.StatusBadRequest,gin.H{"error":err.Error()})
 	}
+
 	mahasiswa.Password = string(hashedPassword)
 	idb.DB.Create(&mahasiswa)
 	result = gin.H{

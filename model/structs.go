@@ -20,9 +20,9 @@ type History struct {
 	PenanggungJawab string `json:"penanggung_jawab"`
 	Telepon string `json:"telepon"`
 	Keterangan string `json:"keterangan"`
-	TimestampPeminjaman string `json:"timestamp_peminjaman"`
-	StatusPeminjaman string `json:"status_peminjaman"`
 	StatusSurat string `json:"status_surat"`
+	StatusPeminjaman string `json:"status_peminjaman"`
+	TimestampPeminjaman string `json:"timestamp_peminjaman"`
 	TimestampStart string `json:"timestamp_start"`
 	TimestapEnd string `json:"timestap_end"`
 }

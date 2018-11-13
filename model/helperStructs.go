@@ -37,7 +37,15 @@ type ListHistory struct {
 	TimestapEnd string `json:"timestamp_end"`
 
 }
-type GetOrder struct {
-	TimestampStart string `json:"timestamp_start" binding:"required"`
+type SearchRuangan struct {
 	Kapasitas string `json:"kapasitas" binding:"required"`
+	TimeStamp TimeStamp
 }
+
+type TimeStamp struct {
+	TimestampStart string `json:"timestamp_start" binding:"required"`
+	TimestampEnd string `json:"timestamp_end" binding:"required"`
+}
+
+
+
