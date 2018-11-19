@@ -95,3 +95,56 @@ func (idb *InDB) GetRuangan (c * gin.Context){
 	c.JSON(http.StatusOK,result)
 	return
 }
+
+func (idb *InDB) GetListRoom (c *gin.Context){
+
+	var (
+		searchList model.ListRoom
+	)
+
+	if err:= c.Bind(&searchList);err!= nil{
+		c.JSON(http.StatusBadRequest,gin.H{
+			"error":err.Error(),
+		})
+		return
+	}
+	resp, err:=http.Get("https://dteti.au-syd.mybluemix.net/api/search/"+searchList.IdDepartemen+"?kapasitas="+searchList.Kapasitas)
+	if err != nil{
+		log.Fatalln(err)
+	}
+
+	var result map[string]interface{}
+
+	json.NewDecoder(resp.Body).Decode(&result)
+	c.JSON(http.StatusOK,result)
+	return
+}
+
+func (idb *InDB) GetScheduleRoom (c *gin.Context){
+	var(
+		scheduleRoom model.ScheduleRoom
+		timeStamp model.TimeStamp
+	)
+
+	if err:= c.Bind(&scheduleRoom); err!= nil{
+		c.JSON(http.StatusBadRequest,gin.H{
+			"error":err.Error(),
+		})
+		return
+	}
+
+	timeStamp = scheduleRoom.TimeStamp
+
+	resp, err:= http.Get("https://dteti.au-syd.mybluemix.net/api/ruangan/"+scheduleRoom.IdRuangan+"/time?start="+timeStamp.TimestampStart+"+&end="+timeStamp.TimestampEnd)
+	if err!= nil{
+		log.Fatalln(err)
+	}
+
+	var result map[string]interface{}
+
+	json.NewDecoder(resp.Body).Decode(&result)
+	c.JSON(http.StatusOK,result)
+	return
+}
+
+

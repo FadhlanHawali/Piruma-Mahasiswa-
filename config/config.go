@@ -11,7 +11,7 @@ func DBInit() *gorm.DB {
 		panic("failed to connect to database")
 	}
 
-	db.AutoMigrate(model.Mahasiswa{},model.History{})
+	db.AutoMigrate(model.Mahasiswa{},model.History{},model.Bank{})
 	return db
 }
 

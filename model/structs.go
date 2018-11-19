@@ -21,9 +21,14 @@ type History struct {
 	Telepon string `json:"telepon"`
 	Keterangan string `json:"keterangan"`
 	StatusSurat string `json:"status_surat"`
-	StatusPeminjaman string `json:"status_peminjaman"`
+	StatusPeminjaman bool `json:"status_peminjaman"`
 	TimestampPeminjaman string `json:"timestamp_peminjaman"`
 	TimestampStart string `json:"timestamp_start"`
 	TimestapEnd string `json:"timestap_end"`
 }
 
+type Bank struct {
+	ID uint `gorm:"primary_key"`
+	Name string `json:"name"`
+	Saldo int `json:"saldo"`
+}
