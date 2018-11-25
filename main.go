@@ -2,7 +2,8 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
+	//_"github.com/go-sql-driver/mysql"
 	"Piruma/config"
 	"Piruma/controller"
 	"Piruma/middleware"
@@ -24,5 +25,6 @@ func main(){
 	router.POST("/api/order",inDB.AddOrder)
 	router.GET("/api/cobaRandom",inDB.Pembayaran)
 	router.GET("/api/tambahAkun",inDB.AddAkun)
-	router.Run(":8080")
+	router.POST("/api/order/check",inDB.CheckStatus)
+	router.Run(":4321")
 }

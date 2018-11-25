@@ -8,6 +8,8 @@ import (
 	"math/rand"
 	"time"
 	"Piruma/model"
+	"strconv"
+	"os"
 )
 var x  = 0
 var bank = [4]model.Bank{
@@ -36,9 +38,32 @@ func (idb *InDB) Pembayaran (c * gin.Context){
 	)
 	//idb.DB.LogMode(true)
 
+	banyak := c.Query("jumlah")
+	jumlah, err := strconv.Atoi(banyak)
+	if err != nil {
+		// handle error
+		fmt.Println(err)
+		os.Exit(2)
+	}
+
+	for i:= 0; i<3;i++{
+		if err:=idb.DB.Table("banks").Where("name = ?",bank[i].Name).UpdateColumn("saldo", 100000).Error;err!=nil{
+			c.JSON(http.StatusBadRequest,gin.H{
+				"error":err.Error(),
+			})
+			return
+		}
+	}
+	if err:=idb.DB.Table("banks").Where("name = ?",bank[3].Name).UpdateColumn("saldo", 0).Error;err!=nil{
+		c.JSON(http.StatusBadRequest,gin.H{
+			"error":err.Error(),
+		})
+		return
+	}
+
 	var w sync.WaitGroup
 	var m sync.Mutex
-	for i := 0; i < 10; i++ {
+	for i := 0; i < jumlah; i++ {
 		w.Add(1)
 		go increment(&w, &m, idb,c)
 	}
@@ -55,6 +80,7 @@ func (idb *InDB) Pembayaran (c * gin.Context){
 		"Bank":bank,
 	}
 	c.JSON(http.StatusOK, result)
+	return
 }
 
 func increment(wg *sync.WaitGroup, m *sync.Mutex, idb *InDB, c *gin.Context) {
@@ -63,11 +89,13 @@ func increment(wg *sync.WaitGroup, m *sync.Mutex, idb *InDB, c *gin.Context) {
 	//time.Sleep(1*time.Second)
 	x = x + 1
 	myrand := random(0, 3)
+	//penerima :=
 	transaksi := random(0,10)
-	//fmt.Println("From : " , akun[myrand].Name)
-	//fmt.Println("Transaksi : ",transaksi )
+	fmt.Println("From : " , bank[myrand].Name)
+	fmt.Println("Transaksi : ",transaksi )
 	bank[myrand].Saldo -= transaksi
 	bank[3].Saldo += transaksi
+	idb.DB.LogMode(true)
 	if err:=idb.DB.Table("banks").Where("name = ?",bank[myrand].Name).UpdateColumn("saldo", bank[myrand].Saldo).Error;err!=nil{
 		c.JSON(http.StatusBadRequest,gin.H{
 			"error":err.Error(),
