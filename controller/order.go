@@ -62,7 +62,7 @@ func (idb *InDB) AddOrder (c *gin.Context){
 	//
 	//resp.Header.Add("Authorization",c.Request.Header.Get("Authorization"))
 
-	req, err := http.NewRequest("POST", "http://localhost:8080/api/public/addOrder", bytes.NewBuffer(bytesRepresentation))
+	req, err := http.NewRequest("POST", "https://dteti.au-syd.mybluemix.net/api/public/addOrder", bytes.NewBuffer(bytesRepresentation))
 	req.Header.Set("Authorization", c.Request.Header.Get("Authorization"))
 	req.Header.Set("Content-Type","application/json")
 	client := &http.Client{}
@@ -98,7 +98,7 @@ func (idb *InDB) CheckStatus (c *gin.Context){
 	//resp, _ := client.Do(req)
 
 	client := &http.Client{}
-	req, _ := http.NewRequest("GET", "localhost:8080/api/order/check?idPemesanan="+idPemesanan, nil)
+	req, _ := http.NewRequest("GET", "https://dteti.au-syd.mybluemix.net/api/order/check?idPemesanan="+idPemesanan, nil)
 	req.Header.Set("Authorization", c.Request.Header.Get("Authorization"))
 	resp, _ := client.Do(req)
 

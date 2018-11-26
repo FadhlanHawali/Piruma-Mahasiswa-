@@ -33,17 +33,17 @@
 			"Rev": "b7bb9baa642d2b9d5918a5bcd3829dae64c65257"
 		},
 		{
-			"ImportPath": "github.com/go-sql-driver/mysql",
-			"Comment": "v1.4.0-5-g99ff426",
-			"Rev": "99ff426eb706cffe92ff3d058e168b278cabf7c7"
-		},
-		{
 			"ImportPath": "github.com/golang/protobuf/proto",
 			"Comment": "v1.2.0-2-gb27b920",
 			"Rev": "b27b920f9e71b439b873b17bf99f56467623814a"
 		},
 		{
 			"ImportPath": "github.com/jinzhu/gorm",
+			"Comment": "v1.9.1-18-g3245508",
+			"Rev": "32455088f24d6b1e9a502fb8e40fdc16139dbea8"
+		},
+		{
+			"ImportPath": "github.com/jinzhu/gorm/dialects/postgres",
 			"Comment": "v1.9.1-18-g3245508",
 			"Rev": "32455088f24d6b1e9a502fb8e40fdc16139dbea8"
 		},
@@ -55,6 +55,21 @@
 			"ImportPath": "github.com/json-iterator/go",
 			"Comment": "1.1.5",
 			"Rev": "1624edc4454b8682399def8740d46db5e4362ba4"
+		},
+		{
+			"ImportPath": "github.com/lib/pq",
+			"Comment": "v1.0.0-6-g9eb73ef",
+			"Rev": "9eb73efc1fcc404148b56765b0d3f61d9a5ef8ee"
+		},
+		{
+			"ImportPath": "github.com/lib/pq/hstore",
+			"Comment": "v1.0.0-6-g9eb73ef",
+			"Rev": "9eb73efc1fcc404148b56765b0d3f61d9a5ef8ee"
+		},
+		{
+			"ImportPath": "github.com/lib/pq/oid",
+			"Comment": "v1.0.0-6-g9eb73ef",
+			"Rev": "9eb73efc1fcc404148b56765b0d3f61d9a5ef8ee"
 		},
 		{
 			"ImportPath": "github.com/mattn/go-isatty",
