@@ -20,9 +20,6 @@ type AddHistory struct {
 	PenanggungJawab string `json:"penanggung_jawab" binding:"required"`
 	Telepon string `json:"telepon" binding:"required"`
 	Keterangan string `json:"keterangan" binding:"required"`
-	TimestampPeminjaman string `json:"timestamp_peminjaman" binding:"required"`
-	StatusPeminjaman bool `json:"status_peminjaman" binding:"required"`
-	StatusSurat string `json:"status_surat" binding:"required"`
 	TimestampStart string `json:"timestamp_start" binding:"required"`
 	TimestapEnd string `json:"timestamp_end" binding:"required"`
 }

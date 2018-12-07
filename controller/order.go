@@ -14,8 +14,8 @@ func (idb *InDB) AddOrder (c *gin.Context){
 		order model.AddOrder
 		timeStamp model.TimeStamp
 		statusRuangan model.StatusRuangan
-		//
-		//history model.History
+
+		history model.History
 	)
 
 	if err:= c.Bind(&order); err!= nil{
@@ -77,6 +77,24 @@ func (idb *InDB) AddOrder (c *gin.Context){
 	//log.Println(result["data"])
 	c.JSON(http.StatusOK,result)
 
+
+	var status = result["status"].(string)
+
+	if (status == "success"){
+		var id =result["id_pemesanan"].(string)
+		history.PenanggungJawab = order.PenanggungJawab
+		history.IdPemesanan = id
+		history.Telepon = order.Telepon
+		history.Keterangan = order.Keterangan
+		history.TimestampStart = timeStamp.TimestampStart
+		history.TimestampEnd = timeStamp.TimestampEnd
+		history.Ruangan = order.Ruangan
+		history.Departemen = order.Departemen
+		history.IdMahasiswa = c.MustGet("id").(string)
+
+		idb.DB.Create(&history)
+
+	}
 	//history.Ruangan = order.Ruangan
 	//history.StatusSurat = statusRuangan.StatusSurat
 	//history.StatusPeminjaman = statusRuangan.StatusPeminjaman
